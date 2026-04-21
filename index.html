@@ -458,15 +458,24 @@
       color: var(--muted);
       margin: 10px 0 4px 0;
     }
-    .pub-list { list-style: none; padding: 0; margin: 0; }
+    .pub-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
     .pub-item {
       display: grid;
       grid-template-columns: 120px 1fr;
       gap: 18px;
-      padding: 18px 0;
-      border-top: 1px solid var(--line);
+      padding: 18px 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
-    .pub-list .pub-item:last-child { border-bottom: 1px solid var(--line); }
+    .pub-item:hover {
+      transform: scale(1.015);
+      background: #f3f7ff;
+      border-color: #d6e3ff;
+      box-shadow: var(--shadow-md);
+    }
     .pub-thumb {
       width: 120px;
       aspect-ratio: 4 / 3;
@@ -526,6 +535,22 @@
       margin: 0 0 14px 0;
     }
 
+    .proj-bullets {
+      list-style: disc;
+      padding-left: 18px;
+      margin: 4px 0 0 0;
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      line-height: 1.55;
+    }
+    .proj-bullets li { margin-bottom: 4px; }
+    .proj-bullets li:last-child { margin-bottom: 0; }
+
+    #projects .pub-thumb img {
+      transform: scale(2);
+      transform-origin: top left;
+    }
+
     footer {
       margin-top: 60px;
       padding-top: 24px;
@@ -579,6 +604,7 @@
       <li><a href="#about">Home</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
     </ul>
   </div>
 </nav>
@@ -616,7 +642,7 @@
   <main class="main">
 
     <section id="about">
-      <h2 class="sec-h">About</h2>
+      <h2 class="sec-h">About Me</h2>
       <p class="about-p">
         I'm a first-year M.S./Ph.D. integrated student at
         <a href="https://gsai.kaist.ac.kr/">KAIST Graduate School of AI (GSAI)</a>,
@@ -625,7 +651,7 @@
       </p>
       <p class="about-p">
         I received my B.E. in Data Science from
-        <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher at dob Studio Inc., and as a research intern at the
+        <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher on 2D face swapping at dob Studio Inc., and as a research intern at the
         <a href="https://semiconductor.samsung.com/kr/">Samsung Electronics AI Center</a>.
       </p>
 
@@ -745,6 +771,27 @@
               <div class="pub-links">
                 <a class="pub-link" href="https://www.researchgate.net/publication/385659358_Digital_Health_Sensor_Data_in_Autism_Developing_Few_Shot_Learning_Approaches_for_Traditional_Machine_Learning_Classifiers"><i class="fas fa-file-pdf"></i> Paper</a>
               </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="sec-h">Projects</h2>
+
+      <div class="year-group">
+        <div class="year-label">2023</div>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-thumb"><img src="/papers/images/CrossSwap.png" alt=""></div>
+            <div>
+              <h3 class="pub-title">Identity-Preserving Face Swapping</h3>
+              <p class="pub-venue">dob engine 2.0 &middot; dob Studio Inc.</p>
+              <ul class="proj-bullets">
+                <li>Built CrossSwap, a face swap model that preserves source identity features via cross-attention between source and target feature maps, boosting the identity preservation metric by 10% over SOTA.</li>
+                <li>Developed a shape-aware identity extractor combining identity embedding with 3DMM to retain source facial shape.</li>
+              </ul>
             </div>
           </li>
         </ul>
