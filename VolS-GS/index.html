@@ -43,7 +43,10 @@ a{color:var(--link)}
 .publication-authors a{color:var(--link)}
 .publication-authors a:hover{text-decoration:underline}
 .affiliation{margin-top:.5rem;font-size:1rem;color:var(--mute)}
-.corresponding{margin-top:.4rem;font-size:.86rem;color:var(--faint)}
+.instmark{margin-top:.7rem}
+.instmark img{height:40px;width:auto;display:inline-block}
+@media screen and (max-width:768px){.instmark img{height:30px}}
+.corresponding{margin-top:.5rem;font-size:.86rem;color:var(--faint)}
 .publication-links{margin-top:1.6rem}
 .publication-links .link-block{display:inline-block;margin:.22rem .2rem}
 .external-link{background-color:#ececea;border-color:transparent;color:#0d0d0d;border-radius:2rem;font-weight:500}
@@ -125,6 +128,7 @@ footer a{color:var(--link)}
         <span class="author-block"><a href="https://sites.google.com/site/jaegulchoo/">Jaegul Choo</a><sup>&#8224;</sup></span>
       </div>
       <div class="affiliation"><span>KAIST AI</span></div>
+      <div class="instmark"><img src="static/images/kaist_ai.png" alt="KAIST AI, Kim Jaechul Graduate School"></div>
       <div class="corresponding"><sup>&#8224;</sup>Corresponding author</div>
       <div class="publication-links">
         <!-- REPLACE the arXiv href with the real id once the preprint is live -->
@@ -139,10 +143,6 @@ footer a{color:var(--link)}
         <span class="link-block">
           <a href="#video" class="button external-link is-rounded">
             <span class="icon"><i class="fas fa-play"></i></span><span>Video</span></a>
-        </span>
-        <span class="link-block">
-          <a href="#bibtex" class="button external-link is-rounded">
-            <span class="icon"><i class="fas fa-quote-left"></i></span><span>BibTeX</span></a>
         </span>
       </div>
     </div>
