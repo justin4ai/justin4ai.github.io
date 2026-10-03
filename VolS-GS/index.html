@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VolS-GS</title>
+<meta name="description" content="VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering.">
+<meta property="og:title" content="VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering">
+<meta property="og:description" content="A differentiable finite-volume transport solve over the Gaussian scene lets light propagate through an object's interior.">
+<meta property="og:image" content="https://justin4ai.github.io/VolS-GS/static/images/f1_teaser.jpg">
+<meta property="og:url" content="https://justin4ai.github.io/VolS-GS/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root{
+  --bg:#000; --fg:#e8e8e6; --mute:#9b9b98; --faint:#6e6e6c;
+  --rule:#242426; --link:hsl(204,90%,68%); --mark:#f0a08e; --markbg:rgba(214,92,70,.20);
+}
+html{background-color:var(--bg);color-scheme:dark}
+body{font-family:'Noto Sans',sans-serif;color:var(--fg);background:var(--bg)}
+.title,.subtitle,strong,b,.content{color:var(--fg)}
+a{color:var(--link)}
+
+/* a narrower measure than Bulma's default: the body was running too wide to read */
+.container.is-max-desktop{max-width:840px}
+.container.is-max-widescreen{max-width:1080px}
+
+.publication-title{font-family:'Google Sans',sans-serif;color:var(--fg)}
+.hero,.hero-body,.section{background:var(--bg)}
+.hero-body{padding-top:3.2rem;padding-bottom:1.4rem}
+.publication-title.is-1{font-size:2.5rem;line-height:1.2}
+@media screen and (max-width:768px){.publication-title.is-1{font-size:1.8rem}}
+.publication-authors{font-family:'Google Sans',sans-serif;margin-top:1.4rem;font-size:1.08rem;color:var(--fg)}
+.publication-authors .author-block{display:inline-block;margin:0 .32rem}
+.publication-authors a{color:var(--link)}
+.publication-authors a:hover{text-decoration:underline}
+.affiliation{margin-top:.5rem;font-size:1rem;color:var(--mute)}
+.corresponding{margin-top:.4rem;font-size:.86rem;color:var(--faint)}
+.publication-links{margin-top:1.6rem}
+.publication-links .link-block{display:inline-block;margin:.22rem .2rem}
+.external-link{background-color:#ececea;border-color:transparent;color:#0d0d0d;border-radius:2rem;font-weight:500}
+.external-link:hover{background-color:#fff;color:#000}
+.external-link.is-disabled{background-color:#1f1f21;color:var(--faint);pointer-events:none}
+
+.section{padding:2.4rem 1.5rem}
+.title.is-3{font-weight:600;margin-bottom:1.3rem}
+.title.is-5{font-weight:600;margin-top:2.4rem;margin-bottom:.9rem}
+.content.has-text-justified{font-size:1rem;line-height:1.7}
+.lead{font-size:.97rem;line-height:1.68;color:var(--mute);max-width:760px;margin:0 auto 1.4rem}
+.lead b{color:var(--fg);font-weight:500}
+
+/* the teaser was overpowering the title; hold it to the measure of the text */
+.teaser{max-width:760px;margin:0 auto}
+.yt{position:relative;width:100%;padding-bottom:56.25%;background:#000;border-radius:3px;overflow:hidden}
+.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.teaser img,.teaser video{width:100%;display:block}
+.black-plate{background:var(--bg);overflow:hidden}
+.black-plate.scroll{overflow-x:auto}
+.black-plate video,.black-plate img{width:100%;display:block}
+.black-plate.scroll video{min-width:860px;width:100%}
+figure{margin:0}
+.sheet{background:#fff;border-radius:3px;padding:10px}
+.sheet img{width:100%;display:block}
+.sheet.roomy{padding:30px}
+@media screen and (max-width:768px){.sheet{padding:6px}.sheet.roomy{padding:14px}}
+.plate-fig img{width:100%;display:block}
+
+.carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.carousel::-webkit-scrollbar{display:none}
+.carousel .slide{flex:0 0 100%;scroll-snap-align:center;background:var(--bg)}
+.carousel .slide video{width:100%;display:block}
+.dots{display:flex;justify-content:center;gap:9px;margin-top:1rem}
+.dots button{width:7px;height:7px;padding:0;border:none;border-radius:50%;background:#3a3a42;cursor:pointer;transition:background .15s,transform .15s}
+.dots button:hover{background:#5c5c66}
+.dots button[aria-current="true"]{background:var(--fg);transform:scale(1.35)}
+.nowbar{margin-top:.7rem;font-size:.93rem;color:var(--fg)}
+.nowbar .now{font-weight:600}
+.nowbar .tag2{color:var(--faint);margin-left:.55rem;font-size:.84rem}
+.nowbar .note{color:var(--mark);margin-left:.55rem;font-size:.84rem}
+
+.selector{margin-bottom:1.2rem}
+.pick{display:inline-block;margin:0 .2rem .28rem 0;padding:.26rem .68rem;font-size:.86rem;border:1px solid #33333a;border-radius:3px;background:transparent;color:var(--mute);cursor:pointer;font-family:inherit;transition:.12s}
+.pick:hover{border-color:#54545e;color:var(--fg)}
+.pick[aria-pressed="true"]{background:#ececea;border-color:#ececea;color:#0d0d0d}
+
+.env-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem}
+.env-grid span{display:block;margin-top:.4rem;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);text-align:center}
+@media screen and (max-width:768px){.env-grid{grid-template-columns:repeat(2,1fr)}}
+
+.table-scroll{overflow-x:auto}
+table.res{border-collapse:collapse;width:100%;font-size:.86rem;font-variant-numeric:tabular-nums}
+table.res th,table.res td{padding:.4rem .55rem;text-align:right;white-space:nowrap;border:none}
+table.res th:first-child,table.res td:first-child{text-align:left}
+table.res thead th{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);font-weight:600;border-bottom:2px solid var(--fg)}
+table.res tbody td{border-bottom:1px solid var(--rule);color:var(--mute)}
+table.res tbody tr:last-child td{border-bottom:2px solid var(--fg);color:var(--fg);font-weight:600}
+table.res td.best{background:var(--markbg);color:var(--mark);font-weight:600}
+table.res td.second{background:rgba(255,255,255,.06);color:var(--fg)}
+table.res .sep{border-left:1px solid var(--rule)}
+.figcap{margin-top:.7rem;font-size:.84rem;line-height:1.6;color:var(--faint);text-align:center}
+
+pre.bib{background:#141416;border:1px solid var(--rule);border-radius:3px;padding:1rem 1.15rem;font-size:.82rem;line-height:1.65;overflow-x:auto;color:#d8d8d6;text-align:left}
+footer.footer{background:var(--bg);border-top:1px solid var(--rule);padding:2.2rem 1.5rem 3.2rem}
+footer .content,footer .content p{font-size:.84rem;color:var(--faint)}
+footer a{color:var(--link)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title">VolS&#8209;GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering</h1>
+      <div class="publication-authors">
+        <span class="author-block"><a href="https://justin4ai.github.io/">Junyeong Ahn</a>,</span>
+        <span class="author-block"><a href="https://sites.google.com/site/jaegulchoo/">Jaegul Choo</a><sup>&#8224;</sup></span>
+      </div>
+      <div class="affiliation"><span>KAIST AI</span></div>
+      <div class="corresponding"><sup>&#8224;</sup>Corresponding author</div>
+      <div class="publication-links">
+        <!-- REPLACE the arXiv href with the real id once the preprint is live -->
+        <span class="link-block">
+          <a href="https://arxiv.org/abs/XXXX.XXXXX" class="button external-link is-rounded">
+            <span class="icon"><i class="fas fa-file-lines"></i></span><span>arXiv</span></a>
+        </span>
+        <span class="link-block">
+          <a href="#" class="button external-link is-rounded is-disabled" aria-disabled="true">
+            <span class="icon"><i class="fab fa-github"></i></span><span>Code</span></a>
+        </span>
+        <span class="link-block">
+          <a href="#video" class="button external-link is-rounded">
+            <span class="icon"><i class="fas fa-play"></i></span><span>Video</span></a>
+        </span>
+        <span class="link-block">
+          <a href="#bibtex" class="button external-link is-rounded">
+            <span class="icon"><i class="fas fa-quote-left"></i></span><span>BibTeX</span></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:.4rem">
+  <div class="container is-max-desktop">
+    <figure class="teaser plate-fig">
+      <img src="static/images/f1_teaser.jpg" alt="VolS-GS reconstructs objects from OLAT captures and relights them under novel lights and views." loading="eager">
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="video" style="padding-top:1.2rem">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video</h2>
+    <!-- REPLACE VIDEO_ID below with the YouTube id once the video is up -->
+    <div class="yt">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="VolS-GS video"
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <div class="content has-text-justified">
+      <p>We present VolS-GS, a relightable Gaussian splatting framework that reconstructs objects from one-light-at-a-time (OLAT) captures and renders them under novel lighting and viewpoints. Relightable Gaussian Splatting methods typically model appearance independently at each primitive, which makes non-local effects difficult to represent. This limitation is particularly apparent for subsurface scattering, where light entering the object at one location can emerge at another.</p>
+      <p>Rather than modeling this effect solely with a neural network or a local kernel at each primitive, we use the spatial support of the Gaussian scene as the domain of a differentiable finite-volume transport solver, so that light can propagate through the object's interior. A small network predicts scattering and absorption coefficients for each Gaussian, and the solve redistributes incident light through the resulting field.</p>
+      <p>To keep the learned shadow and specular terms from taking over the other components, our shadow term is predicted from visibility together with the transmittances and the scattering the solve produces, and a regularizer suppresses specular highlights in regions the shadow term predicts to be unlit.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method</h2>
+    <p class="lead has-text-centered">A small network reads each Gaussian and predicts how strongly its material scatters and absorbs light. Those coefficients turn the region the Gaussians occupy into a volume that light can be solved through, so a ray entering the object at one point can leave at another. One forward and one adjoint solve per step make the whole thing trainable, and the volume itself carries <b>no learnable parameters</b>.</p>
+    <figure class="plate-fig">
+      <img src="static/images/f3_method.png" alt="Per-Gaussian coefficients feed a finite-volume transport solve whose solution is composited with the surface terms." loading="lazy">
+    </figure>
+
+    <h3 class="title is-5 has-text-centered">Conceptual Comparison</h3>
+    <p class="lead has-text-centered">Gaussians sit on the surface, so a kernel evaluated at each one can only move light along that surface. Solving over the occupied volume instead carries light across the interior, which is the path that lights up a thin region from behind.</p>
+    <figure class="sheet roomy">
+      <img src="static/images/f2_kernel.png" alt="A local per-primitive kernel compared against a transport solve over the occupied volume." loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Relighting Comparison</h2>
+    <div class="carousel" id="sweepCarousel"></div>
+    <div class="dots" id="sweepDots"></div>
+    <p class="nowbar has-text-centered">
+      <span class="now" id="sweepName"></span>
+      <span class="tag2" id="sweepBench"></span>
+      <span class="note" id="sweepNote"></span>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Environment Map Relighting</h2>
+    <div class="selector has-text-centered" id="envChips"></div>
+    <div class="env-grid" id="envGrid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Decomposition</h2>
+    <figure class="sheet">
+      <img src="static/images/f3_decomp.jpg" alt="Learned decomposition into diffuse, specular, shadow, subsurface and normal components." loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+    <p class="lead has-text-centered">Relighting under lights held out from training. <b>Translucent</b> and <b>Lego</b> are synthetic scenes from GS<sup>3</sup>; <b>Pixiu</b>, <b>Cat</b> and <b>Pikachu</b> are real captures from NRHints. The inset is the error against ground truth, on one ramp shared by every panel.</p>
+    <figure class="sheet">
+      <img src="static/images/f4_qual.jpg" alt="Qualitative relighting comparison under novel lighting across translucent and opaque scenes." loading="lazy">
+    </figure>
+    <h3 class="title is-5 has-text-centered">Ablation</h3>
+    <p class="lead has-text-centered">Removing the volumetric solve, and removing the transport cues the shadow term reads.</p>
+    <figure class="sheet">
+      <img src="static/images/f5_abl.jpg" alt="Ablation removing the volumetric subsurface channel and the transport cues on the shadow term." loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-widescreen">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+    <p class="lead has-text-centered">Across the three OLAT benchmarks. The eight subsurface scenes are listed per scene; the other two datasets are test-split means over their seven and six scenes.</p>
+    <div class="selector has-text-centered" id="metricToggle"></div>
+    <div class="table-scroll"><table class="res" id="resultsTable"></table></div>
+    <p class="figcap">The eight subsurface scenes are per scene at the 60k protocol iteration. The NRHints and GS<sup>3</sup> columns are test-split means over their seven and six scenes, trained to 100k.</p>
+  </div>
+</section>
+
+
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+<pre class="bib">@article{ahn2026volsgs,
+  title   = {VolS-GS: Relightable Gaussian Splatting with
+             Volumetric Subsurface Scattering},
+  author  = {Ahn, Junyeong and Choo, Jaegul},
+  journal = {arXiv preprint},
+  year    = {2026}
+}</pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container is-max-desktop has-text-centered">
+    <div class="content">
+      <p>This page borrows its layout from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>, itself based on <a href="https://nerfies.github.io/">Nerfies</a>. Released under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SCENES=[
+ {id:"pixiu",  name:"Pixiu",   bench:"NRHints · real"},
+ {id:"cat",    name:"Cat",     bench:"NRHints · real"},
+ {id:"crystal",name:"Crystal", bench:"SSS-GS · real"},
+ {id:"soap",   name:"Soap",    bench:"SSS-GS · synthetic"},
+ {id:"fish",   name:"Fish",    bench:"NRHints · real"},
+ {id:"drums",  name:"Drums",   bench:"GS³ · synthetic"},
+ {id:"lego",   name:"Lego",    bench:"GS³ · synthetic"}
+];
+const car=document.getElementById("sweepCarousel"),
+      dots=document.getElementById("sweepDots"),
+      nmEl=document.getElementById("sweepName"),
+      bnEl=document.getElementById("sweepBench"),
+      ntEl=document.getElementById("sweepNote");
+
+SCENES.forEach((s,i)=>{
+  const sl=document.createElement("div"); sl.className="slide";
+  const v=document.createElement("video");
+  v.src="static/videos/sweep/"+s.id+".mp4";
+  v.muted=v.loop=v.playsInline=true; v.preload=i<2?"auto":"metadata";
+  if(i===0) v.autoplay=true;
+  sl.appendChild(v); car.appendChild(sl);
+  const d=document.createElement("button");
+  d.type="button"; d.setAttribute("aria-label",s.name);
+  d.setAttribute("aria-current", i===0?"true":"false");
+  d.addEventListener("click",()=>car.scrollTo({left:car.clientWidth*i,behavior:"smooth"}));
+  dots.appendChild(d);
+});
+let current=-1;
+function show(i){
+  if(i===current) return; current=i;
+  car.querySelectorAll("video").forEach((v,j)=>{
+    if(j===i){ v.preload="auto"; v.play().catch(()=>{}); } else v.pause();
+  });
+  dots.querySelectorAll("button").forEach((d,j)=>d.setAttribute("aria-current", j===i?"true":"false"));
+  nmEl.textContent=SCENES[i].name; bnEl.textContent=SCENES[i].bench;
+  ntEl.textContent=SCENES[i].note||"";
+}
+let tick;
+car.addEventListener("scroll",()=>{clearTimeout(tick);tick=setTimeout(()=>show(Math.round(car.scrollLeft/car.clientWidth)),60);},{passive:true});
+show(0);
+
+const ENV_SCENES=[{id:"bunny",name:"Bunny"},{id:"joyfulyell",name:"JoyfulYell"},
+                  {id:"catsmall",name:"CatSmall"},{id:"furscene",name:"FurScene"}];
+const MAPS=[{f:"snow_field",n:"Snow Field"},{f:"kiara_1_dawn",n:"Kiara Dawn"},
+            {f:"rural_winter_roadside",n:"Winter Roadside"},{f:"horn-koppe_snow",n:"Horn-Koppe Snow"}];
+const envChips=document.getElementById("envChips"), envGrid=document.getElementById("envGrid");
+ENV_SCENES.forEach((s,i)=>{
+  const b=document.createElement("button");
+  b.className="pick"; b.type="button"; b.textContent=s.name;
+  b.setAttribute("aria-pressed", i===0?"true":"false"); b.dataset.id=s.id;
+  b.addEventListener("click",()=>envPick(s.id));
+  envChips.appendChild(b);
+});
+function envPick(id){
+  envChips.querySelectorAll(".pick").forEach(c=>c.setAttribute("aria-pressed", c.dataset.id===id?"true":"false"));
+  envGrid.innerHTML="";
+  MAPS.forEach(m=>{
+    const fig=document.createElement("figure");
+    const pl=document.createElement("div"); pl.className="black-plate";
+    const v=document.createElement("video");
+    v.src=`static/videos/envmap/${id}__${m.f}_1k.mp4`;
+    v.autoplay=v.muted=v.loop=v.playsInline=true; v.preload="auto";
+    pl.appendChild(v);
+    const cap=document.createElement("span"); cap.textContent=m.n;
+    fig.appendChild(pl); fig.appendChild(cap); envGrid.appendChild(fig);
+  });
+}
+envPick("bunny");
+
+const COLS=["Bunny","Dragon","Candle","Soap","Statue","Crystal","JoyfulYell","Physalis","NRHints","GS³"];
+const METHODS=["GS³","SSS-GS","RNG","SSD-GS","VolS-GS (Ours)"];
+const DATA={
+ PSNR:{hi:true,rows:[
+  [34.7109,36.1753,38.3707,38.3713,35.3291,35.2767,31.5467,28.9163,31.94,31.11],
+  [36.0035,34.7397,38.3432,36.4006,35.5485,34.6201,31.4973,28.9331,25.16,28.23],
+  [35.3300,34.6134,40.3420,38.4962,29.2148,33.6849,30.0986,28.6492,30.74,28.64],
+  [38.9147,37.7832,41.9214,38.2959,35.9034,35.2096,31.8938,29.5474,32.05,31.01],
+  [40.1453,38.0579,43.6366,41.0098,38.3515,35.6278,32.1856,30.2210,32.37,31.59]],dp:[4,4,4,4,4,4,4,4,2,2]},
+ SSIM:{hi:true,rows:[
+  [0.9811,0.9769,0.9882,0.9852,0.9815,0.9813,0.9665,0.9535,0.9500,0.9676],
+  [0.9797,0.9596,0.9864,0.9762,0.9765,0.9776,0.9603,0.9461,0.8499,0.9452],
+  [0.9859,0.9715,0.9940,0.9896,0.9647,0.9743,0.9582,0.9483,0.9272,0.9560],
+  [0.9907,0.9828,0.9942,0.9884,0.9845,0.9808,0.9676,0.9585,0.9504,0.9672],
+  [0.9920,0.9835,0.9960,0.9935,0.9899,0.9820,0.9690,0.9590,0.9513,0.9702]],dp:[4,4,4,4,4,4,4,4,4,4]},
+ LPIPS:{hi:false,rows:[
+  [0.0239,0.0251,0.0167,0.0243,0.0207,0.0196,0.0419,0.0479,0.0795,0.0364],
+  [0.0323,0.0539,0.0222,0.0286,0.0368,0.0231,0.0468,0.0542,0.1589,0.0649],
+  [0.0177,0.0312,0.0080,0.0116,0.0371,0.0291,0.0492,0.0551,0.0998,0.0465],
+  [0.0129,0.0199,0.0077,0.0186,0.0185,0.0205,0.0411,0.0470,0.0802,0.0362],
+  [0.0112,0.0188,0.0060,0.0077,0.0130,0.0189,0.0385,0.0444,0.0779,0.0330]],dp:[4,4,4,4,4,4,4,4,4,4]}
+};
+const tbl=document.getElementById("resultsTable"), mt=document.getElementById("metricToggle");
+Object.keys(DATA).forEach((m,i)=>{
+  const b=document.createElement("button");
+  b.className="pick"; b.type="button";
+  b.textContent=m+(DATA[m].hi?" ↑":" ↓");
+  b.setAttribute("aria-pressed", i===0?"true":"false"); b.dataset.m=m;
+  b.addEventListener("click",()=>drawTable(m));
+  mt.appendChild(b);
+});
+function drawTable(metric){
+  mt.querySelectorAll(".pick").forEach(c=>c.setAttribute("aria-pressed", c.dataset.m===metric?"true":"false"));
+  const d=DATA[metric], n=COLS.length, rank=[];
+  for(let c=0;c<n;c++){
+    const col=d.rows.map((r,i)=>({v:r[c],i}));
+    col.sort((a,b)=> d.hi ? b.v-a.v : a.v-b.v);
+    rank[c]={best:col[0].i, second:col[1].i};
+  }
+  let h="<thead><tr><th>Method</th>";
+  COLS.forEach((c,i)=> h+=`<th${i===8?' class="sep"':''}>${c}</th>`);
+  h+="</tr></thead><tbody>";
+  METHODS.forEach((m,ri)=>{
+    h+=`<tr><td>${m}</td>`;
+    for(let c=0;c<n;c++){
+      const cls=[]; if(c===8) cls.push("sep");
+      if(rank[c].best===ri) cls.push("best"); else if(rank[c].second===ri) cls.push("second");
+      h+=`<td${cls.length?` class="${cls.join(' ')}"`:''}>${d.rows[ri][c].toFixed(d.dp[c])}</td>`;
+    }
+    h+="</tr>";
+  });
+  tbl.innerHTML=h+"</tbody>";
+}
+drawTable("PSNR");
+</script>
+</body>
+</html>
