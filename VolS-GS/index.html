@@ -44,8 +44,8 @@ a{color:var(--link)}
 .publication-authors a:hover{text-decoration:underline}
 .affiliation{margin-top:.5rem;font-size:1rem;color:var(--fg)}
 .instmark{margin-top:.7rem}
-.instmark img{height:40px;width:auto;display:inline-block}
-@media screen and (max-width:768px){.instmark img{height:30px}}
+.instmark img{height:52px;width:auto;display:inline-block}
+@media screen and (max-width:768px){.instmark img{height:38px}}
 .corresponding{margin-top:.5rem;font-size:.86rem;color:var(--fg)}
 .publication-links{margin-top:1.6rem}
 .publication-links .link-block{display:inline-block;margin:.22rem .2rem}
@@ -136,7 +136,7 @@ footer a{color:var(--link)}
             <span class="icon"><i class="fas fa-file-lines"></i></span><span>arXiv</span></a>
         </span>
         <span class="link-block">
-          <a href="#" class="button external-link is-rounded is-disabled" aria-disabled="true">
+          <a href="https://github.com/justin4ai/VolS-GS.git" class="button external-link is-rounded">
             <span class="icon"><i class="fab fa-github"></i></span><span>Code</span></a>
         </span>
         <span class="link-block">
@@ -156,17 +156,6 @@ footer a{color:var(--link)}
   </div>
 </section>
 
-<section class="section" id="video" style="padding-top:1.2rem">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Video</h2>
-    <div class="yt">
-      <iframe src="https://www.youtube.com/embed/pBBVwziFHc4" title="VolS-GS video" loading="lazy"
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Abstract</h2>
@@ -174,6 +163,17 @@ footer a{color:var(--link)}
       <p>We present VolS-GS, a relightable Gaussian splatting framework that reconstructs objects from one-light-at-a-time (OLAT) captures and renders them under novel lighting and viewpoints. Relightable Gaussian Splatting methods typically model appearance independently at each primitive, which makes non-local effects difficult to represent. This limitation is particularly apparent for subsurface scattering, where light entering the object at one location can emerge at another.</p>
       <p>Rather than modeling this effect solely with a neural network or a local kernel at each primitive, we use the spatial support of the Gaussian scene as the domain of a differentiable finite-volume transport solver, so that light can propagate through the object's interior. A small network predicts scattering and absorption coefficients for each Gaussian, and the solve redistributes incident light through the resulting field.</p>
       <p>To keep the learned shadow and specular terms from taking over the other components, our shadow term is predicted from visibility together with the transmittances and the scattering the solve produces, and a regularizer suppresses specular highlights in regions the shadow term predicts to be unlit.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="video" style="padding-top:1.2rem">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video</h2>
+    <div class="yt">
+      <iframe src="https://www.youtube.com/embed/pBBVwziFHc4" title="VolS-GS video" loading="lazy"
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
     </div>
   </div>
 </section>
