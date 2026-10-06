@@ -197,8 +197,8 @@ footer a{color:var(--link)}
 <section class="section">
   <div class="container is-max-widescreen">
     <h2 class="title is-3 has-text-centered">Relighting Comparison</h2>
+    <div class="selector has-text-centered" id="sweepChips"></div>
     <div class="carousel" id="sweepCarousel"></div>
-    <div class="dots" id="sweepDots"></div>
     <p class="nowbar has-text-centered">
       <span class="now" id="sweepName"></span>
       <span class="tag2" id="sweepBench"></span>
@@ -282,7 +282,7 @@ const SCENES=[
  {id:"lego",   name:"Lego",    bench:"GS³ · synthetic"}
 ];
 const car=document.getElementById("sweepCarousel"),
-      dots=document.getElementById("sweepDots"),
+      chips=document.getElementById("sweepChips"),
       nmEl=document.getElementById("sweepName"),
       bnEl=document.getElementById("sweepBench"),
       ntEl=document.getElementById("sweepNote");
@@ -295,10 +295,10 @@ SCENES.forEach((s,i)=>{
   if(i===0) v.autoplay=true;
   sl.appendChild(v); car.appendChild(sl);
   const d=document.createElement("button");
-  d.type="button"; d.setAttribute("aria-label",s.name);
-  d.setAttribute("aria-current", i===0?"true":"false");
+  d.className="pick"; d.type="button"; d.textContent=s.name;
+  d.setAttribute("aria-pressed", i===0?"true":"false");
   d.addEventListener("click",()=>car.scrollTo({left:car.clientWidth*i,behavior:"smooth"}));
-  dots.appendChild(d);
+  chips.appendChild(d);
 });
 let current=-1;
 function show(i){
@@ -306,7 +306,7 @@ function show(i){
   car.querySelectorAll("video").forEach((v,j)=>{
     if(j===i){ v.preload="auto"; v.play().catch(()=>{}); } else v.pause();
   });
-  dots.querySelectorAll("button").forEach((d,j)=>d.setAttribute("aria-current", j===i?"true":"false"));
+  chips.querySelectorAll(".pick").forEach((d,j)=>d.setAttribute("aria-pressed", j===i?"true":"false"));
   nmEl.textContent=SCENES[i].name; bnEl.textContent=SCENES[i].bench;
   ntEl.textContent=SCENES[i].note||"";
 }
