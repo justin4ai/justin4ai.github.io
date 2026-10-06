@@ -314,9 +314,9 @@ let tick;
 car.addEventListener("scroll",()=>{clearTimeout(tick);tick=setTimeout(()=>show(Math.round(car.scrollLeft/car.clientWidth)),60);},{passive:true});
 show(0);
 
-const ENV_SCENES=[{id:"bunny",name:"Bunny"},{id:"joyfulyell",name:"JoyfulYell"},
-                  {id:"catsmall",name:"CatSmall"},{id:"furscene",name:"FurScene"},
-                  {id:"anisometal",name:"AnisoMetal"}];
+const ENV_SCENES=[{id:"anisometal",name:"AnisoMetal"},{id:"bunny",name:"Bunny"},
+                  {id:"joyfulyell",name:"JoyfulYell"},{id:"catsmall",name:"CatSmall"},
+                  {id:"furscene",name:"FurScene"}];
 const MAPS=[{f:"snow_field",n:"Snow Field"},{f:"kiara_1_dawn",n:"Kiara Dawn"},
             {f:"rural_winter_roadside",n:"Winter Roadside"},{f:"horn-koppe_snow",n:"Horn-Koppe Snow"}];
 const envChips=document.getElementById("envChips"), envGrid=document.getElementById("envGrid");
