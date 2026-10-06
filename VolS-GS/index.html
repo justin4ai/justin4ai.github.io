@@ -30,15 +30,15 @@ body{font-family:'Noto Sans',sans-serif;color:var(--fg);background:var(--bg)}
 a{color:var(--link)}
 
 /* a narrower measure than Bulma's default: the body was running too wide to read */
-.container.is-max-desktop{max-width:840px}
+.container.is-max-desktop{max-width:900px}
 .container.is-max-widescreen{max-width:1080px}
 
 .publication-title{font-family:'Google Sans',sans-serif;color:var(--fg)}
 .hero,.hero-body,.section{background:var(--bg)}
 .hero-body{padding-top:3.2rem;padding-bottom:1.4rem}
-.publication-title.is-1{font-size:2.5rem;line-height:1.2}
-@media screen and (max-width:768px){.publication-title.is-1{font-size:1.8rem}}
-.publication-authors{font-family:'Google Sans',sans-serif;margin-top:1.4rem;font-size:1.08rem;color:var(--fg)}
+.publication-title.is-1{font-size:3rem;line-height:1.2}
+@media screen and (max-width:768px){.publication-title.is-1{font-size:2.1rem}}
+.publication-authors{font-family:'Google Sans',sans-serif;margin-top:1.4rem;font-size:1.25rem;color:var(--fg)}
 .publication-authors .author-block{display:inline-block;margin:0 .32rem}
 .publication-authors a{color:var(--link)}
 .publication-authors a:hover{text-decoration:underline}
@@ -131,9 +131,8 @@ footer a{color:var(--link)}
       <div class="instmark"><img src="static/images/kaist_ai.png" alt="KAIST AI, Kim Jaechul Graduate School"></div>
       <div class="corresponding"><sup>&#8224;</sup>Corresponding author</div>
       <div class="publication-links">
-        <!-- REPLACE the arXiv href with the real id once the preprint is live -->
         <span class="link-block">
-          <a href="https://arxiv.org/abs/XXXX.XXXXX" class="button external-link is-rounded">
+          <a href="https://arxiv.org/abs/2610.04007" class="button external-link is-rounded">
             <span class="icon"><i class="fas fa-file-lines"></i></span><span>arXiv</span></a>
         </span>
         <span class="link-block">
@@ -160,10 +159,9 @@ footer a{color:var(--link)}
 <section class="section" id="video" style="padding-top:1.2rem">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Video</h2>
-    <!-- REPLACE VIDEO_ID below with the YouTube id once the video is up -->
     <div class="yt">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="VolS-GS video"
-              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      <iframe src="https://www.youtube.com/embed/pBBVwziFHc4" title="VolS-GS video" loading="lazy"
+              frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
     </div>
   </div>
