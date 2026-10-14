@@ -501,10 +501,18 @@
       height: 100%;
       object-fit: cover;
     }
-    #publications .pub-item.highlight {
-      border-left: 4px solid var(--accent);
-      background: linear-gradient(135deg, var(--accent-soft) 0%, #fff 100%);
-      box-shadow: var(--shadow-md);
+    #publications .pub-item.highlight { border-color: #cfe0ff; }
+    #publications .pub-item.highlight .pub-venue::after {
+      content: "★ Selected";
+      margin-left: 8px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid #cfe0ff;
+      border-radius: 999px;
     }
     .pub-desc {
       color: var(--ink-soft);
@@ -713,7 +721,7 @@
           </li>
 
           <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/mv_conditioned_teaser.png" alt="" style="transform: scale(2); transform-origin: top right;"></div>
+            <div class="pub-thumb"><img src="/papers/images/mv_conditioned_thumb.png" alt=""></div>
             <div>
               <h3 class="pub-title">A Paper on Multi-view Conditioned Video Generation</h3>
               <p class="pub-venue">Under review (first author)</p>
