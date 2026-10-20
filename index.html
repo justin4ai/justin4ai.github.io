@@ -460,6 +460,8 @@
       margin: 0 0 6px 0;
     }
     .pub-authors strong { color: var(--ink); font-weight: 600; }
+    .pub-authors a { color: inherit; border-bottom: 1px dotted var(--muted); }
+    .pub-authors a:hover { color: var(--accent); border-bottom-color: var(--accent); }
     .pub-venue {
       color: var(--ink);
       font-size: 13.5px;
@@ -594,7 +596,6 @@
       <li><a href="#publications">Publications</a></li>
       <li><a href="#awards">Honors</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
     </ul>
   </div>
 </nav>
@@ -625,6 +626,7 @@
       <div class="interest-tags">
         <span class="interest-tag">Generative Models</span>
         <span class="interest-tag accent">Digital Humans</span>
+        <span class="interest-tag">Physical AI</span>
       </div>
     </div>
   </aside>
@@ -637,11 +639,11 @@
         I'm a first-year M.S./Ph.D. integrated student at
         <a href="https://gsai.kaist.ac.kr/">KAIST Graduate School of AI (GSAI)</a>,
         supervised by Prof. <a href="https://sites.google.com/site/jaegulchoo/">Jaegul Choo</a>.
-        My research interests include modeling lifelike avatars and diffusion models.
+        My current research interests include human relighting and 3D physical world.
       </p>
       <p class="about-p">
-        I received my B.E. in Data Science from
-        <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher on 2D face swapping at dob Studio Inc., and as a research intern at the
+        I received B.E. in Data Science from
+        <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher on 2D face swapping, and as a research intern at
         <a href="https://semiconductor.samsung.com/kr/">Samsung Electronics AI Center</a>.
       </p>
 
@@ -689,7 +691,7 @@
 
     <section id="publications">
       <h2 class="sec-h">Publications</h2>
-      <p class="pub-note">* denotes equal contribution</p>
+      <p class="pub-note">* denotes equal contribution<br>&dagger; denotes corresponding author</p>
 
       <div class="year-group">
         <div class="year-label">2026</div>
@@ -708,7 +710,7 @@
             <div class="pub-thumb"><video src="/papers/videos/vols-gs.mp4" poster="/papers/videos/vols-gs.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
               <h3 class="pub-title">VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering</h3>
-              <p class="pub-authors"><strong>Junyeong Ahn</strong>, Jaegul Choo</p>
+              <p class="pub-authors"><strong>J. Ahn</strong>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
               <p class="pub-venue">arXiv preprint</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/pdf/2610.04007"><i class="fas fa-file-pdf"></i> Paper</a>
@@ -719,10 +721,25 @@
           </li>
 
           <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/mv_conditioned_thumb.png" alt=""></div>
+            <div class="pub-thumb"><video src="/papers/videos/mv-conditioned.mp4" poster="/papers/videos/mv-conditioned.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
-              <h3 class="pub-title">A Paper on Multi-view Conditioned Video Generation</h3>
-              <p class="pub-venue">Under review (first author)</p>
+              <h3 class="pub-title">Multi-view Conditioned Video Generation with Diverse Camera Trajectories</h3>
+              <p class="pub-authors"><strong>*J. Ahn</strong>, *G. Kim, *<a href="https://kinam0252.github.io/" target="_blank" rel="noopener">K. Kim</a>, G. Kim, H. Jung, <a href="https://whit3snow.github.io/" target="_blank" rel="noopener">H. Jang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue">Under review</p>
+              <p class="pub-desc">Subject-consistent video diffusion from multi-view references, using surface geometry conditioning to preserve 3D consistency and identity across diverse camera trajectories.</p>
+            </div>
+          </li>
+          <li class="pub-item highlight">
+            <div class="pub-thumb"><video style="object-position: right;" src="/papers/videos/texavatars.mp4" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
+            <div>
+              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
+              <p class="pub-authors">*<a href="https://leejesse.github.io/" target="_blank" rel="noopener">J. Lee</a>, <strong>*J. Ahn</strong>, <a href="https://keh0t0.github.io/" target="_blank" rel="noopener">T. Kang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue">3DV 2026</p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
+                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
+              </div>
+              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
             </div>
           </li>
 
@@ -730,26 +747,12 @@
             <div class="pub-thumb"><img src="/papers/images/egloce_thumbnail.png" alt=""></div>
             <div>
               <h3 class="pub-title">EGLOCE: Training-Free Energy-Guided Latent Optimization for Concept Erasure</h3>
-              <p class="pub-authors"><strong>*Junyeong Ahn</strong>, *Seojin Yoon, Sungyong Baik</p>
+              <p class="pub-authors"><strong>*J. Ahn</strong>, *S. Yoon, <a href="https://baiksung.github.io/" target="_blank" rel="noopener">S. Baik</a><sup>&dagger;</sup></p>
               <p class="pub-venue">arXiv preprint</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://arxiv.org/pdf/2604.09405"><i class="fas fa-file-pdf"></i> Paper</a>
               </div>
               <p class="pub-desc">A training-free concept erasure method that steers diffusion latents away from unwanted concepts at inference while keeping the rest of the prompt intact.</p>
-            </div>
-          </li>
-
-          <li class="pub-item highlight">
-            <div class="pub-thumb"><video style="object-position: right;" src="/papers/videos/texavatars.mp4" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
-            <div>
-              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
-              <p class="pub-authors">*Jaeseong Lee, <strong>*Junyeong Ahn</strong>, Taewoong Kang, Jaegul Choo</p>
-              <p class="pub-venue">3DV 2026</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
-                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
-              </div>
-              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
             </div>
           </li>
         </ul>
@@ -762,7 +765,7 @@
             <div class="pub-thumb"><img src="/papers/images/Robot sensor collar.png" alt=""></div>
             <div>
               <h3 class="pub-title">Digital Health Sensor Data in Autism: Developing Few Shot Learning Approaches for Traditional Machine Learning Classifiers</h3>
-              <p class="pub-authors">Casey C Bennett, Cedomir Stanojevic, Jiyeong Oh, <strong>Junyeong Ahn</strong>, Yeeun Jeon, Kanghee Son, Nikki Abbott</p>
+              <p class="pub-authors"><a href="https://www.caseybennett.com/" target="_blank" rel="noopener">C. C. Bennett</a>, C. Stanojevic, J. Oh, <strong>J. Ahn</strong>, Y. Jeon, K. Son, N. Abbott</p>
               <p class="pub-venue">IEEE BSN 2024</p>
               <div class="pub-links">
                 <a class="pub-link" href="https://www.researchgate.net/publication/385659358_Digital_Health_Sensor_Data_in_Autism_Developing_Few_Shot_Learning_Approaches_for_Traditional_Machine_Learning_Classifiers"><i class="fas fa-file-pdf"></i> Paper</a>
@@ -797,27 +800,6 @@
             <div class="exp-date">2027</div>
             <div>
               <div><span class="exp-org">ICLR</span></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2 class="sec-h">Projects</h2>
-
-      <div class="year-group">
-        <div class="year-label">2023</div>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/CrossSwap.png" alt=""></div>
-            <div>
-              <h3 class="pub-title">Identity-Preserving Face Swapping</h3>
-              <p class="pub-venue">dob engine 2.0 &middot; dob Studio Inc.</p>
-              <ul class="proj-bullets">
-                <li>Built CrossSwap, a face swap model that preserves source identity features via cross-attention between source and target feature maps, boosting the identity preservation metric by 10% over SOTA.</li>
-                <li>Developed a shape-aware identity extractor combining identity embedding with 3DMM to retain source facial shape.</li>
-              </ul>
             </div>
           </li>
         </ul>
