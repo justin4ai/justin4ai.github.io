@@ -503,16 +503,26 @@
       height: 100%;
       object-fit: cover;
     }
-    #publications .pub-item.highlight { position: relative; }
-    #publications .pub-item.highlight::before {
-      content: "";
-      position: absolute;
-      left: -14px;
-      top: 14px;
-      bottom: 14px;
-      width: 4px;
-      border-radius: 4px;
-      background: var(--accent);
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+      padding: 2px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--muted);
+    }
+    .badge-accepted {
+      background: var(--accent-soft);
+      border-color: #a9c6ff;
+      color: var(--accent);
+    }
+    .badge-review {
+      background: #fff4e0;
+      border-color: #f0cf94;
+      color: #9a5b00;
     }
     .pub-desc {
       color: var(--ink-soft);
@@ -592,9 +602,9 @@
     <a class="brand" href="#top">Junyeong Ahn</a>
     <ul class="nav-links">
       <li><a href="#about">Home</a></li>
+      <li><a href="#awards">Honors</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#publications">Publications</a></li>
-      <li><a href="#awards">Honors</a></li>
       <li><a href="#services">Services</a></li>
     </ul>
   </div>
@@ -611,7 +621,7 @@
 
     <ul class="contact-list">
       <li><i class="fas fa-envelope"></i> justinahn [at] kaist.ac.kr</li>
-      <li><i class="fas fa-university"></i> DAVIAN Lab, KAIST</li>
+      <li><i class="fas fa-university"></i> KAIST GSAI &middot; DAVIAN Lab</li>
     </ul>
 
     <div class="social">
@@ -624,8 +634,8 @@
     <div class="interest-card">
       <div class="interest-label">Research Interests</div>
       <div class="interest-tags">
-        <span class="interest-tag">Generative Models</span>
-        <span class="interest-tag accent">Digital Humans</span>
+        <span class="interest-tag accent">Relighting</span>
+        <span class="interest-tag">Digital Humans</span>
         <span class="interest-tag">Physical AI</span>
       </div>
     </div>
@@ -639,146 +649,18 @@
         I'm a first-year M.S./Ph.D. integrated student at
         <a href="https://gsai.kaist.ac.kr/">KAIST Graduate School of AI (GSAI)</a>,
         supervised by Prof. <a href="https://sites.google.com/site/jaegulchoo/">Jaegul Choo</a>.
-        My current research interests include human relighting and 3D physical world.
+        I work on physically grounded generative models, currently focusing on human-centric relighting in video.
       </p>
       <p class="about-p">
         I received B.E. in Data Science from
         <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher on 2D face swapping, and as a research intern at
         <a href="https://semiconductor.samsung.com/kr/">Samsung Electronics AI Center</a>.
       </p>
+      <p class="about-p">
+        I'm always open to questions and collaborations - feel free to <a href="mailto:justinahn@kaist.ac.kr">drop me an email</a>!
+      </p>
 
 
-    </section>
-
-    <section id="experience">
-      <h2 class="sec-h">Experience</h2>
-
-      <div class="exp-items">
-        <div class="exp-item">
-          <img class="exp-logo" src="/images/logos/kai.png" alt="KAIST">
-          <div>
-            <span class="exp-org">KAIST AI</span>
-            <span class="exp-date">Sep 2024 – Feb 2026</span>
-            <div class="exp-pos">Research Intern, <a href="https://davian.kaist.ac.kr/">DAVIAN Lab</a></div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img class="exp-logo" src="/images/logos/samsung_2.png" alt="Samsung">
-          <div>
-            <span class="exp-org">Samsung Electronics</span>
-            <span class="exp-date">Mar 2025 – Jun 2025</span>
-            <div class="exp-pos">Research Intern, AI Center</div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img class="exp-logo" src="/images/logos/dpe2.png" alt="DePaul">
-          <div>
-            <span class="exp-org">DePaul University</span>
-            <span class="exp-date">Nov 2022 – Sep 2024</span>
-            <div class="exp-pos">Research Intern, <a href="https://www.caseybennett.com/">Data Science Innovation Lab</a></div>
-          </div>
-        </div>
-        <div class="exp-item">
-          <img class="exp-logo" src="/images/logos/dob.png" alt="dob Studio">
-          <div>
-            <span class="exp-org">dob Studio Inc.</span>
-            <span class="exp-date">Sep 2023 – Oct 2024</span>
-            <div class="exp-pos">AI Researcher, R&amp;D Center</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications">
-      <h2 class="sec-h">Publications</h2>
-      <p class="pub-note">* denotes equal contribution<br>&dagger; denotes corresponding author</p>
-
-      <div class="year-group">
-        <div class="year-label">2026</div>
-        <ul class="pub-list">
-          <!--
-          <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/bl_teaser.png" alt=""></div>
-            <div>
-              <h3 class="pub-title">A Paper on Relightable 3D Head Avatar</h3>
-              <p class="pub-venue">In preparation (first author)</p>
-            </div>
-          </li>
-          -->
-
-          <li class="pub-item highlight">
-            <div class="pub-thumb"><video src="/papers/videos/vols-gs.mp4" poster="/papers/videos/vols-gs.jpg" autoplay loop muted playsinline preload="none"></video></div>
-            <div>
-              <h3 class="pub-title">VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering</h3>
-              <p class="pub-authors"><strong>J. Ahn</strong>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
-              <p class="pub-venue">arXiv preprint</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2610.04007"><i class="fas fa-file-pdf"></i> Paper</a>
-                <a class="pub-link" href="https://justin4ai.github.io/VolS-GS/"><i class="fas fa-globe"></i> Project Page</a>
-              </div>
-              <p class="pub-desc">Relightable Gaussian splatting that sends light through the object's interior with a differentiable volumetric solver, improving relighting of subsurface-scattering objects.</p>
-            </div>
-          </li>
-
-          <li class="pub-item">
-            <div class="pub-thumb"><video src="/papers/videos/mv-conditioned.mp4" poster="/papers/videos/mv-conditioned.jpg" autoplay loop muted playsinline preload="none"></video></div>
-            <div>
-              <h3 class="pub-title">OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images</h3>
-              <p class="pub-authors"><strong>*J. Ahn</strong>, *G. Kim, *<a href="https://kinam0252.github.io/" target="_blank" rel="noopener">K. Kim</a>, G. Kim, H. Jung, <a href="https://whit3snow.github.io/" target="_blank" rel="noopener">H. Jang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
-              <p class="pub-venue">arXiv preprint</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2610.35684"><i class="fas fa-file-pdf"></i> Paper</a>
-                <a class="pub-link" href="https://justin4ai.github.io/OmniShowcase/"><i class="fas fa-globe"></i> Project Page</a>
-              </div>
-              <p class="pub-desc">Subject-consistent video diffusion from multi-view references, using surface geometry conditioning to preserve 3D consistency and identity across diverse camera trajectories.</p>
-            </div>
-          </li>
-          <li class="pub-item highlight">
-            <div class="pub-thumb"><video style="object-position: right;" src="/papers/videos/texavatars.mp4" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
-            <div>
-              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
-              <p class="pub-authors">*<a href="https://leejesse.github.io/" target="_blank" rel="noopener">J. Lee</a>, <strong>*J. Ahn</strong>, <a href="https://keh0t0.github.io/" target="_blank" rel="noopener">T. Kang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
-              <p class="pub-venue">3DV 2026</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
-                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
-              </div>
-              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
-            </div>
-          </li>
-
-          <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/egloce_thumbnail.png" alt=""></div>
-            <div>
-              <h3 class="pub-title">EGLOCE: Training-Free Energy-Guided Latent Optimization for Concept Erasure</h3>
-              <p class="pub-authors"><strong>*J. Ahn</strong>, *S. Yoon, <a href="https://baiksung.github.io/" target="_blank" rel="noopener">S. Baik</a><sup>&dagger;</sup></p>
-              <p class="pub-venue">arXiv preprint</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2604.09405"><i class="fas fa-file-pdf"></i> Paper</a>
-              </div>
-              <p class="pub-desc">A training-free concept erasure method that steers diffusion latents away from unwanted concepts at inference while keeping the rest of the prompt intact.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="year-group">
-        <div class="year-label">2024</div>
-        <ul class="pub-list">
-          <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/Robot sensor collar.png" alt=""></div>
-            <div>
-              <h3 class="pub-title">Digital Health Sensor Data in Autism: Developing Few Shot Learning Approaches for Traditional Machine Learning Classifiers</h3>
-              <p class="pub-authors"><a href="https://www.caseybennett.com/" target="_blank" rel="noopener">C. C. Bennett</a>, C. Stanojevic, J. Oh, <strong>J. Ahn</strong>, Y. Jeon, K. Son, N. Abbott</p>
-              <p class="pub-venue">IEEE BSN 2024</p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://www.researchgate.net/publication/385659358_Digital_Health_Sensor_Data_in_Autism_Developing_Few_Shot_Learning_Approaches_for_Traditional_Machine_Learning_Classifiers"><i class="fas fa-file-pdf"></i> Paper</a>
-              </div>
-              <p class="pub-desc">Few-shot learning approaches that let traditional machine learning classifiers work with small digital health sensor datasets in autism.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
     </section>
 
     <section id="awards">
@@ -792,6 +674,122 @@
           </div>
         </li>
       </ul>
+    </section>
+
+    <section id="experience">
+      <h2 class="sec-h">Experience</h2>
+      <ul class="exp-list">
+        <li class="exp-row">
+          <div class="exp-date">Mar 2025 – Jun 2025</div>
+          <div><span class="exp-org">Samsung Electronics AI Center</span> <span class="exp-place">&middot; Research Intern</span></div>
+        </li>
+        <li class="exp-row">
+          <div class="exp-date">Sep 2023 – Oct 2024</div>
+          <div><span class="exp-org">dob Studio Inc.</span> <span class="exp-place">&middot; AI Researcher, R&amp;D Center</span></div>
+        </li>
+        <li class="exp-row">
+          <div class="exp-date">Nov 2022 – Sep 2024</div>
+          <div><span class="exp-org">DePaul University</span> <span class="exp-place">&middot; Research Intern, <a href="https://www.caseybennett.com/">Data Science Innovation Lab</a></span></div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2 class="sec-h">Publications</h2>
+      <p class="pub-note">* equal contribution &middot; &dagger; corresponding author</p>
+
+      <div class="year-group">
+        <div class="year-label">3D / Digital Humans</div>
+        <ul class="pub-list">
+          <!--
+          <li class="pub-item">
+            <div class="pub-thumb"><img src="/papers/images/bl_teaser.png" alt=""></div>
+            <div>
+              <h3 class="pub-title">A Paper on Relightable 3D Head Avatar</h3>
+              <p class="pub-venue">In preparation (first author)</p>
+            </div>
+          </li>
+          -->
+
+          <li class="pub-item">
+            <div class="pub-thumb"><video src="/papers/videos/vols-gs.mp4" poster="/papers/videos/vols-gs.jpg" autoplay loop muted playsinline preload="none"></video></div>
+            <div>
+              <h3 class="pub-title">VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering</h3>
+              <p class="pub-authors"><strong>J. Ahn</strong>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue"><span class="badge badge-review">Under Review</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2610.04007"><i class="fas fa-file-pdf"></i> Paper</a>
+                <a class="pub-link" href="https://justin4ai.github.io/VolS-GS/"><i class="fas fa-globe"></i> Project Page</a>
+              </div>
+              <p class="pub-desc">Relightable Gaussian splatting that sends light through the object's interior with a differentiable volumetric solver, improving relighting of subsurface-scattering objects.</p>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <div class="pub-thumb"><video style="object-position: right;" src="/papers/videos/texavatars.mp4" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
+            <div>
+              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
+              <p class="pub-authors">*<a href="https://leejesse.github.io/" target="_blank" rel="noopener">J. Lee</a>, <strong>*J. Ahn</strong>, <a href="https://keh0t0.github.io/" target="_blank" rel="noopener">T. Kang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue"><span class="badge badge-accepted">3DV 2026</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
+                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
+              </div>
+              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">Video Generation</div>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-thumb"><video src="/papers/videos/mv-conditioned.mp4" poster="/papers/videos/mv-conditioned.jpg" autoplay loop muted playsinline preload="none"></video></div>
+            <div>
+              <h3 class="pub-title">OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images</h3>
+              <p class="pub-authors"><strong>*J. Ahn</strong>, *G. Kim, *<a href="https://kinam0252.github.io/" target="_blank" rel="noopener">K. Kim</a>, G. Kim, H. Jung, <a href="https://whit3snow.github.io/" target="_blank" rel="noopener">H. Jang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue"><span class="badge badge-review">Under Review</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2610.35684"><i class="fas fa-file-pdf"></i> Paper</a>
+                <a class="pub-link" href="https://justin4ai.github.io/OmniShowcase/"><i class="fas fa-globe"></i> Project Page</a>
+              </div>
+              <p class="pub-desc">Subject-consistent video diffusion from multi-view references, using surface geometry conditioning to preserve 3D consistency and identity across diverse camera trajectories.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="year-group">
+        <div class="year-label">Other</div>
+        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-thumb"><img src="/papers/images/egloce_thumbnail.png" alt=""></div>
+            <div>
+              <h3 class="pub-title">EGLOCE: Training-Free Energy-Guided Latent Optimization for Concept Erasure</h3>
+              <p class="pub-authors"><strong>*J. Ahn</strong>, *S. Yoon, <a href="https://baiksung.github.io/" target="_blank" rel="noopener">S. Baik</a><sup>&dagger;</sup></p>
+              <p class="pub-venue"><span class="badge">arXiv</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2604.09405"><i class="fas fa-file-pdf"></i> Paper</a>
+              </div>
+              <p class="pub-desc">A training-free concept erasure method that steers diffusion latents away from unwanted concepts at inference while keeping the rest of the prompt intact.</p>
+            </div>
+          </li>
+
+          <li class="pub-item">
+            <div class="pub-thumb"><img src="/papers/images/Robot sensor collar.png" alt=""></div>
+            <div>
+              <h3 class="pub-title">Digital Health Sensor Data in Autism: Developing Few Shot Learning Approaches for Traditional Machine Learning Classifiers</h3>
+              <p class="pub-authors"><a href="https://www.caseybennett.com/" target="_blank" rel="noopener">C. C. Bennett</a>, C. Stanojevic, J. Oh, <strong>J. Ahn</strong>, Y. Jeon, K. Son, N. Abbott</p>
+              <p class="pub-venue"><span class="badge badge-accepted">IEEE BSN 2024</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://www.researchgate.net/publication/385659358_Digital_Health_Sensor_Data_in_Autism_Developing_Few_Shot_Learning_Approaches_for_Traditional_Machine_Learning_Classifiers"><i class="fas fa-file-pdf"></i> Paper</a>
+              </div>
+              <p class="pub-desc">Few-shot learning approaches that let traditional machine learning classifiers work with small digital health sensor datasets in autism.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
 
     <section id="services">
