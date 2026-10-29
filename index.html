@@ -403,6 +403,19 @@
       margin-top: 2px;
     }
 
+    #experience .exp-row { align-items: center; }
+    .exp-line { display: flex; align-items: center; gap: 12px; }
+    .exp-logo-sm {
+      width: 32px;
+      height: 32px;
+      padding: 3px;
+      flex-shrink: 0;
+      object-fit: contain;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
     .year-group { margin-bottom: 28px; }
     .year-label {
       font-family: 'Inter Tight', sans-serif;
@@ -503,6 +516,30 @@
       height: 100%;
       object-fit: cover;
     }
+    #publications .pub-item.highlight {
+      position: relative;
+      background: #f7faff;
+      border-color: #d6e3ff;
+    }
+    #publications .pub-item.highlight::before {
+      content: "";
+      position: absolute;
+      left: -14px;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      border-radius: 4px;
+      background: var(--accent);
+    }
+    .hl-key {
+      display: inline-block;
+      width: 4px;
+      height: 12px;
+      margin: 0 6px 0 2px;
+      border-radius: 4px;
+      background: var(--accent);
+      vertical-align: -1px;
+    }
     .badge {
       display: inline-block;
       font-size: 12px;
@@ -602,9 +639,9 @@
     <a class="brand" href="#top">Junyeong Ahn</a>
     <ul class="nav-links">
       <li><a href="#about">Home</a></li>
-      <li><a href="#awards">Honors</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#publications">Publications</a></li>
+      <li><a href="#awards">Honors</a></li>
       <li><a href="#services">Services</a></li>
     </ul>
   </div>
@@ -634,8 +671,8 @@
     <div class="interest-card">
       <div class="interest-label">Research Interests</div>
       <div class="interest-tags">
-        <span class="interest-tag accent">Relighting</span>
-        <span class="interest-tag">Digital Humans</span>
+        <span class="interest-tag accent">Digital Humans</span>
+        <span class="interest-tag">Video Generation</span>
         <span class="interest-tag">Physical AI</span>
       </div>
     </div>
@@ -656,24 +693,8 @@
         <a href="https://www.hanyang.ac.kr/">Hanyang University</a>. While pursuing the degree, I worked as an AI researcher on 2D face swapping, and as a research intern at
         <a href="https://semiconductor.samsung.com/kr/">Samsung Electronics AI Center</a>.
       </p>
-      <p class="about-p">
-        I'm always open to questions and collaborations - feel free to <a href="mailto:justinahn@kaist.ac.kr">drop me an email</a>!
-      </p>
 
 
-    </section>
-
-    <section id="awards">
-      <h2 class="sec-h">Honors &amp; Awards</h2>
-      <ul class="exp-list">
-        <li class="exp-row">
-          <div class="exp-date">Jun 2026 – 2030</div>
-          <div>
-            <div><span class="exp-org">Hyundai Motor Chung Mong-Koo Foundation Scholarship</span> <span class="exp-place">(Graduate Science &amp; Technology Scholar)</span> <span style="float:right">🏅 Scholar Representative</span></div>
-            <div class="exp-pos">Full fellowship of KRW 7,000,000 (~USD 5,000) per semester throughout the M.S.–Ph.D. program, awarded for outstanding academic and research potential.</div>
-          </div>
-        </li>
-      </ul>
     </section>
 
     <section id="experience">
@@ -681,22 +702,22 @@
       <ul class="exp-list">
         <li class="exp-row">
           <div class="exp-date">Mar 2025 – Jun 2025</div>
-          <div><span class="exp-org">Samsung Electronics AI Center</span> <span class="exp-place">&middot; Research Intern</span></div>
+          <div class="exp-line"><img class="exp-logo-sm" src="/images/logos/samsung_2.png" alt="Samsung"><span><span class="exp-org">Samsung Electronics AI Center</span> <span class="exp-place">&middot; Research Intern</span></span></div>
         </li>
         <li class="exp-row">
           <div class="exp-date">Sep 2023 – Oct 2024</div>
-          <div><span class="exp-org">dob Studio Inc.</span> <span class="exp-place">&middot; AI Researcher, R&amp;D Center</span></div>
+          <div class="exp-line"><img class="exp-logo-sm" src="/images/logos/dob.png" alt="dob Studio"><span><span class="exp-org">dob Studio Inc.</span> <span class="exp-place">&middot; AI Researcher, R&amp;D Center</span></span></div>
         </li>
         <li class="exp-row">
           <div class="exp-date">Nov 2022 – Sep 2024</div>
-          <div><span class="exp-org">DePaul University</span> <span class="exp-place">&middot; Research Intern, <a href="https://www.caseybennett.com/">Data Science Innovation Lab</a></span></div>
+          <div class="exp-line"><img class="exp-logo-sm" src="/images/logos/dpe2.png" alt="DePaul"><span><span class="exp-org">DePaul University</span> <span class="exp-place">&middot; Research Intern, <a href="https://www.caseybennett.com/">Data Science Innovation Lab</a></span></span></div>
         </li>
       </ul>
     </section>
 
     <section id="publications">
       <h2 class="sec-h">Publications</h2>
-      <p class="pub-note">* equal contribution &middot; &dagger; corresponding author</p>
+      <p class="pub-note">* equal contribution &middot; &dagger; corresponding author &middot; <span class="hl-key"></span>representative work</p>
 
       <div class="year-group">
         <div class="year-label">3D / Digital Humans</div>
@@ -711,7 +732,7 @@
           </li>
           -->
 
-          <li class="pub-item">
+          <li class="pub-item highlight">
             <div class="pub-thumb"><video src="/papers/videos/vols-gs.mp4" poster="/papers/videos/vols-gs.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
               <h3 class="pub-title">VolS-GS: Relightable Gaussian Splatting with Volumetric Subsurface Scattering</h3>
@@ -725,7 +746,7 @@
             </div>
           </li>
 
-          <li class="pub-item">
+          <li class="pub-item highlight">
             <div class="pub-thumb"><video style="object-position: right;" src="/papers/videos/texavatars.mp4" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
               <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
@@ -792,6 +813,19 @@
       </div>
     </section>
 
+    <section id="awards">
+      <h2 class="sec-h">Honors &amp; Awards</h2>
+      <ul class="exp-list">
+        <li class="exp-row">
+          <div class="exp-date">Jun 2026 – 2030</div>
+          <div>
+            <div><span class="exp-org">Hyundai Motor Chung Mong-Koo Foundation Scholarship</span> <span class="exp-place">(Graduate Science &amp; Technology Scholar)</span> <span style="float:right">🏅 Scholar Representative</span></div>
+            <div class="exp-pos">Full fellowship of KRW 7,000,000 (~USD 5,000) per semester throughout the M.S.–Ph.D. program, awarded for outstanding academic and research potential.</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
     <section id="services">
       <h2 class="sec-h">Academic Services</h2>
 
@@ -809,7 +843,7 @@
     </section>
 
     <footer>
-      &copy; <span id="year"></span> Junyeong Ahn
+      &copy; <span id="year"></span> Junyeong Ahn - Draft borrowed from <a href="https://junxuan-li.github.io/" target="_blank" rel="noopener">Junxuan Li</a>
     </footer>
 
   </main>
