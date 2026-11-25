@@ -466,12 +466,12 @@
       margin: 0 0 6px 0;
     }
     .pub-authors {
-      color: var(--muted);
+      color: var(--ink);
       font-size: 14.5px;
       margin: 0 0 6px 0;
     }
-    .pub-authors strong { color: var(--ink); font-weight: 600; }
-    .pub-authors a { color: inherit; border-bottom: 1px dotted var(--muted); }
+    .pub-authors strong { color: var(--ink); font-weight: 700; }
+    .pub-authors a { color: inherit; border-bottom: 1px dotted var(--ink); }
     .pub-authors a:hover { color: var(--accent); border-bottom-color: var(--accent); }
     .pub-venue {
       color: var(--ink);
@@ -609,7 +609,7 @@
       color: #9a5b00;
     }
     .pub-desc {
-      color: var(--ink-soft);
+      color: var(--ink);
       font-size: 13.5px;
       line-height: 1.6;
       margin: 10px 0 0 0;
@@ -619,6 +619,17 @@
       font-size: 13px;
       margin: 0 0 14px 0;
     }
+
+    .mentee-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--ink);
+      font-size: 15.5px;
+      line-height: 1.7;
+    }
+    .mentee-list li { padding: 4px 0; }
+    .mentee-list strong { font-weight: 700; }
 
     .proj-bullets {
       list-style: disc;
@@ -878,6 +889,13 @@
             <p class="pub-desc">A research on foundation representation encoder for fine-scale robot manipulation.</p>
           </div>
         </li>
+      </ul>
+    </section>
+
+    <section id="mentoring">
+      <h2 class="sec-h">Mentored Students</h2>
+      <ul class="mentee-list">
+        <li><strong>G. Kim</strong> (2026–now): OmniShowcase (Under Review), Fine-Grained Representation (Ongoing)</li>
       </ul>
     </section>
 
