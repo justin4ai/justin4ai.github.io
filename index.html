@@ -37,6 +37,7 @@
       --line: #ececea;
       --accent: #2a6df4;
       --accent-soft: #eaf1ff;
+      --card-line: #e3e5e9;
       --radius: 14px;
       --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
       --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.06);
@@ -221,7 +222,7 @@
       height: 36px;
       border-radius: 8px;
       background: #fff;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--card-line);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -237,7 +238,7 @@
       margin-top: 22px;
       padding: 14px 16px;
       background: #fff;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--card-line);
       border-radius: 12px;
       box-shadow: var(--shadow-sm);
       text-align: center;
@@ -349,12 +350,12 @@
       gap: 16px;
       padding: 18px 22px;
       background: #fff;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--card-line);
       border-radius: 16px;
       box-shadow: var(--shadow-sm);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .exp-item:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .exp-item:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); border-color: var(--accent); }
     .exp-logo {
       width: 56px;
       height: 56px;
@@ -431,7 +432,7 @@
       gap: 18px;
       padding: 18px 20px;
       background: #fff;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--card-line);
       border-radius: 16px;
       box-shadow: var(--shadow-sm);
       transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
@@ -487,7 +488,7 @@
       gap: 6px;
       font-size: 13px;
       padding: 4px 10px;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--card-line);
       border-radius: 999px;
       color: var(--ink-soft);
       background: #fff;
