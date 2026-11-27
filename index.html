@@ -706,7 +706,6 @@
       <li><a href="#about">Home</a></li>
       <li><a href="#news">News</a></li>
       <li><a href="#publications">Publications</a></li>
-      <li><a href="#ongoing">Ongoing</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#awards">Honors</a></li>
       <li><a href="#services">Services</a></li>
@@ -781,18 +780,24 @@
       <h2 class="sec-h">Publications</h2>
       <p class="pub-note">* equal contribution &middot; &dagger; corresponding author &middot; &Dagger; advisee</p>
 
-      <div class="year-group">
-        <div class="year-label">3D / Digital Humans</div>
-        <ul class="pub-list">
-          <!--
+      <ul class="pub-list">
           <li class="pub-item">
-            <div class="pub-thumb"><img src="/papers/images/bl_teaser.png" alt=""></div>
+            <div class="pub-thumb"><video src="/papers/videos/relighting.mp4" poster="/papers/videos/relighting.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
-              <h3 class="pub-title">A Paper on Relightable 3D Head Avatar</h3>
-              <p class="pub-venue">In preparation (first author)</p>
+              <h3 class="pub-title">Human-Centric Video Relighting with Heterogeneous Light Sources</h3>
+              <p class="pub-venue"><span class="badge">First Author</span></p>
+              <p class="pub-desc">A video diffusion framework that relights human-centric videos under diverse light sources within a single model.</p>
             </div>
           </li>
-          -->
+
+          <li class="pub-item">
+            <div class="pub-thumb"><img src="/papers/images/emb.png" alt=""></div>
+            <div>
+              <h3 class="pub-title">Fine-Grained Representation for Robot Manipulation</h3>
+              <p class="pub-venue"><span class="badge">Co-First Author</span></p>
+              <p class="pub-desc">A research on foundation representation encoder for fine-scale robot manipulation.</p>
+            </div>
+          </li>
 
           <li class="pub-item">
             <div class="pub-thumb"><video src="/papers/videos/vols-gs.mp4?v=2" poster="/papers/videos/vols-gs.jpg" autoplay loop muted playsinline preload="none"></video></div>
@@ -809,25 +814,6 @@
           </li>
 
           <li class="pub-item">
-            <div class="pub-thumb"><video src="/papers/videos/texavatars.mp4?v=2" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
-            <div>
-              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
-              <p class="pub-authors">*<a href="https://leejesse.github.io/" target="_blank" rel="noopener">J. Lee</a>, <strong>*J. Ahn</strong>, <a href="https://keh0t0.github.io/" target="_blank" rel="noopener">T. Kang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
-              <p class="pub-venue"><span class="badge badge-accepted">3DV 2026</span></p>
-              <div class="pub-links">
-                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
-                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
-              </div>
-              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="year-group">
-        <div class="year-label">Video Generation</div>
-        <ul class="pub-list">
-          <li class="pub-item">
             <div class="pub-thumb"><video src="/papers/videos/mv-conditioned.mp4?v=2" poster="/papers/videos/mv-conditioned.jpg" autoplay loop muted playsinline preload="none"></video></div>
             <div>
               <h3 class="pub-title">OmniShowcase: Omnidirectional Subject-Consistent Video Generation from Multi-View Images</h3>
@@ -840,12 +826,21 @@
               <p class="pub-desc">Subject-consistent video diffusion from multi-view references, using surface geometry conditioning to preserve 3D consistency and identity across diverse camera trajectories.</p>
             </div>
           </li>
-        </ul>
-      </div>
 
-      <div class="year-group">
-        <div class="year-label">Other</div>
-        <ul class="pub-list">
+          <li class="pub-item">
+            <div class="pub-thumb"><video src="/papers/videos/texavatars.mp4?v=2" poster="/papers/videos/texavatars.jpg" autoplay loop muted playsinline preload="none"></video></div>
+            <div>
+              <h3 class="pub-title">TexAvatars: Hybrid Texel-3D Representations for Stable Rigging of Photorealistic Gaussian Head Avatars</h3>
+              <p class="pub-authors">*<a href="https://leejesse.github.io/" target="_blank" rel="noopener">J. Lee</a>, <strong>*J. Ahn</strong>, <a href="https://keh0t0.github.io/" target="_blank" rel="noopener">T. Kang</a>, <a href="https://sites.google.com/site/jaegulchoo/" target="_blank" rel="noopener">J. Choo</a><sup>&dagger;</sup></p>
+              <p class="pub-venue"><span class="badge badge-accepted">3DV 2026</span></p>
+              <div class="pub-links">
+                <a class="pub-link" href="https://arxiv.org/pdf/2512.21099"><i class="fas fa-file-pdf"></i> Paper</a>
+                <a class="pub-link" href="https://summertight.github.io/TexAvatars/"><i class="fas fa-globe"></i> Project Page</a>
+              </div>
+              <p class="pub-desc">A Gaussian head avatar that predicts attributes in UV space but drives deformation with mesh Jacobians, keeping rigging stable under extreme poses and expressions.</p>
+            </div>
+          </li>
+
           <li class="pub-item">
             <div class="pub-thumb"><img src="/papers/images/egloce_thumbnail.png" alt=""></div>
             <div>
@@ -871,30 +866,6 @@
               <p class="pub-desc">Few-shot learning approaches that let traditional machine learning classifiers work with small digital health sensor datasets in autism.</p>
             </div>
           </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="ongoing">
-      <h2 class="sec-h">Ongoing Research</h2>
-      <ul class="pub-list">
-        <li class="pub-item">
-          <div class="pub-thumb"><video src="/papers/videos/relighting.mp4" poster="/papers/videos/relighting.jpg" autoplay loop muted playsinline preload="none"></video></div>
-          <div>
-            <h3 class="pub-title">Human-Centric Video Relighting with Heterogeneous Light Sources</h3>
-            <p class="pub-venue"><span class="badge">First Author</span></p>
-            <p class="pub-desc">A video diffusion framework that relights human-centric videos under diverse light sources within a single model.</p>
-          </div>
-        </li>
-
-        <li class="pub-item">
-          <div class="pub-thumb"><img src="/papers/images/emb.png" alt=""></div>
-          <div>
-            <h3 class="pub-title">Fine-Grained Representation for Robot Manipulation</h3>
-            <p class="pub-venue"><span class="badge">Co-First Author</span></p>
-            <p class="pub-desc">A research on foundation representation encoder for fine-scale robot manipulation.</p>
-          </div>
-        </li>
       </ul>
     </section>
 
